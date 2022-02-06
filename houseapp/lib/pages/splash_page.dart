@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houseapp/pages/home_page.dart';
 import 'package:houseapp/theme.dart';
 
 class SplashPage extends StatelessWidget {
@@ -53,18 +54,28 @@ class SplashPage extends StatelessWidget {
                     SizedBox(
                       height: 40,
                     ),
-                    Container(
-                      width: 210,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(17),
-                        color: purpleColor,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Explore Now',
-                          style: whiteTestStyle.copyWith(
-                            fontSize: 18,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 210,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(17),
+                          color: purpleColor,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Explore Now',
+                            style: whiteTestStyle.copyWith(
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
