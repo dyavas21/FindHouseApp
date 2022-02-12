@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:houseapp/theme.dart';
+import 'package:houseapp/widgets/bottom_navbar_item.dart';
 import 'package:houseapp/widgets/city_card.dart';
 import 'package:houseapp/widgets/space_container.dart';
 import 'package:houseapp/widgets/tips_card.dart';
@@ -12,11 +13,13 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 24,
               left: 24,
             ),
             child: ListView(
               children: [
+                SizedBox(
+                  height: 24,
+                ),
                 Text(
                   'Explore Now',
                   style: blackTestStyle.copyWith(
@@ -161,54 +164,50 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 74,
+                ),
+                SizedBox(
+                  height: 30,
                 ),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(
-            left: 24,
-            right: 24,
+        floatingActionButton: Container(
+          padding: EdgeInsets.only(
+            top: 19,
+            left: 30,
+            right: 30,
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(26),
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              backgroundColor: whiteGreyColor,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/home_color.png',
-                    width: 26,
-                  ),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/mail.png',
-                    width: 26,
-                  ),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/card.png',
-                    width: 26,
-                  ),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/love.png',
-                    width: 26,
-                  ),
-                  label: 'home',
-                ),
-              ],
-            ),
+          height: 65,
+          width: MediaQuery.of(context).size.width - (2 * 24),
+          margin: EdgeInsets.symmetric(horizontal: 24),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(23),
+            color: whiteGreyColor,
           ),
-        ));
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              BottomNavbarItem(
+                imageUrl: 'assets/home_color.png',
+                isActive: true,
+              ),
+              BottomNavbarItem(
+                imageUrl: 'assets/mail.png',
+                isActive: false,
+              ),
+              BottomNavbarItem(
+                imageUrl: 'assets/card.png',
+                isActive: false,
+              ),
+              BottomNavbarItem(
+                imageUrl: 'assets/love.png',
+                isActive: false,
+              ),
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 }
