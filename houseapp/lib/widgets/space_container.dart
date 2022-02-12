@@ -3,9 +3,9 @@ import 'package:houseapp/theme.dart';
 
 class SpaceContainer extends StatelessWidget {
   String? imageUrl;
-  int? star;
+  String? star;
   String? title;
-  double? price;
+  String? price;
   String? location;
 
   SpaceContainer({
@@ -52,7 +52,7 @@ class SpaceContainer extends StatelessWidget {
                           width: 2,
                         ),
                         Text(
-                          '${star!}',
+                          star!,
                           style: whiteTestStyle.copyWith(
                             fontSize: 13,
                           ),
@@ -82,7 +82,7 @@ class SpaceContainer extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${price!}',
+                    price!,
                     style: purpleTestStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -96,7 +96,8 @@ class SpaceContainer extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-               
+                ],
+              ),
               SizedBox(
                 height: 16,
               ),
