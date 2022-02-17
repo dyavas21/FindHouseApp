@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:houseapp/theme.dart';
+import 'package:houseapp/widgets/facilities_card.dart';
+import 'package:houseapp/widgets/photo_card_detail.dart';
 
 class DetailPage extends StatelessWidget {
   @override
@@ -58,8 +60,56 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     title(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Main Facilities',
+                      style: blackTestStyle.copyWith(
+                        fontSize: 16,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        FacilitiesCard(
+                          imageUrl: 'assets/icon_kitchen.png',
+                          title: ' Kitchen',
+                          number: '2',
+                        ),
+                        Spacer(),
+                        FacilitiesCard(
+                          imageUrl: 'assets/icon_bedroom.png',
+                          title: ' Bedroom',
+                          number: '2',
+                        ),
+                        Spacer(),
+                        FacilitiesCard(
+                          imageUrl: 'assets/icon_cupboard.png',
+                          title: ' Big Lemari',
+                          number: '2',
+                        ),
+                        SizedBox(
+                          width: 24,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Photos',
+                      style: blackTestStyle.copyWith(
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Slider(),
                   ],
                 ),
               ),
@@ -93,7 +143,7 @@ class DetailPage extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: '/ month',
+                    text: ' / month',
                     style: greyTestStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -147,9 +197,25 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  Widget Facilities() {
-    return Column(
-      children: [],
+  Widget Slider() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          PhotoCardDetail(
+            imageUrl: 'assets/photo1.png',
+          ),
+          PhotoCardDetail(
+            imageUrl: 'assets/photo2.png',
+          ),
+          PhotoCardDetail(
+            imageUrl: 'assets/photo3.png',
+          ),
+          PhotoCardDetail(
+            imageUrl: 'assets/photo1.png',
+          ),
+        ],
+      ),
     );
   }
 }
