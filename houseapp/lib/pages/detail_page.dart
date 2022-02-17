@@ -42,78 +42,89 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 328),
-              child: Container(
-                padding: EdgeInsets.only(
-                  left: 24,
-                  top: 30,
-                  bottom: 40,
+            ListView(
+              children: [
+                SizedBox(
+                  height: 328,
                 ),
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+                Container(
+                  padding: EdgeInsets.only(
+                    left: 24,
+                    top: 30,
+                    bottom: 40,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      title(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        'Main Facilities',
+                        style: blackTestStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          FacilitiesCard(
+                            imageUrl: 'assets/icon_kitchen.png',
+                            title: ' Kitchen',
+                            number: '2',
+                          ),
+                          Spacer(),
+                          FacilitiesCard(
+                            imageUrl: 'assets/icon_bedroom.png',
+                            title: ' Bedroom',
+                            number: '2',
+                          ),
+                          Spacer(),
+                          FacilitiesCard(
+                            imageUrl: 'assets/icon_cupboard.png',
+                            title: ' Big Lemari',
+                            number: '2',
+                          ),
+                          SizedBox(
+                            width: 24,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        'Photos',
+                        style: blackTestStyle.copyWith(
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Slider(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Location(),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Button(),
+                    ],
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    title(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'Main Facilities',
-                      style: blackTestStyle.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        FacilitiesCard(
-                          imageUrl: 'assets/icon_kitchen.png',
-                          title: ' Kitchen',
-                          number: '2',
-                        ),
-                        Spacer(),
-                        FacilitiesCard(
-                          imageUrl: 'assets/icon_bedroom.png',
-                          title: ' Bedroom',
-                          number: '2',
-                        ),
-                        Spacer(),
-                        FacilitiesCard(
-                          imageUrl: 'assets/icon_cupboard.png',
-                          title: ' Big Lemari',
-                          number: '2',
-                        ),
-                        SizedBox(
-                          width: 24,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'Photos',
-                      style: blackTestStyle.copyWith(
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Slider(),
-                  ],
-                ),
-              ),
-            )
+              ],
+            ),
           ],
         ),
       ),
@@ -215,6 +226,71 @@ class DetailPage extends StatelessWidget {
             imageUrl: 'assets/photo1.png',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget Location() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Location',
+          style: blackTestStyle.copyWith(
+            fontSize: 16,
+          ),
+        ),
+        SizedBox(
+          height: 6,
+        ),
+        Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Jln. Kappan Sukses No. 20',
+                  style: greyTestStyle,
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  'Palembang',
+                  style: greyTestStyle,
+                ),
+              ],
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: Image.asset(
+                'assets/btn_map.png',
+                width: 40,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget Button() {
+    return Container(
+      margin: EdgeInsets.only(right: 24),
+      height: 50,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(17),
+        color: purpleColor,
+      ),
+      child: Center(
+        child: Text(
+          'Book Now',
+          style: whiteTestStyle.copyWith(
+            fontSize: 18,
+          ),
+        ),
       ),
     );
   }
