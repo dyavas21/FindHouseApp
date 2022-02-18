@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:houseapp/pages/error_page.dart';
 import 'package:houseapp/theme.dart';
 import 'package:houseapp/widgets/facilities_card.dart';
 import 'package:houseapp/widgets/photo_card_detail.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -16,31 +19,6 @@ class DetailPage extends StatelessWidget {
               height: 350,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-                right: 24,
-                top: 30,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset(
-                      'assets/btn_back.png',
-                      width: 40,
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/btn_wishlist.png',
-                    width: 40,
-                  ),
-                ],
-              ),
             ),
             ListView(
               children: [
@@ -115,15 +93,115 @@ class DetailPage extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      Location(),
+                      Text(
+                        'Location',
+                        style: blackTestStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Jln. Kappan Sukses No. 20',
+                                style: greyTestStyle,
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                'Palembang',
+                                style: greyTestStyle,
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 24),
+                            child: GestureDetector(
+                              onTap: () async {
+                                String url =
+                                    'https://goo.gl/maps/tJRDkrWDGiJgR4H87';
+
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                } else {
+                                  throw (url);
+                                }
+                              },
+                              child: Image.asset(
+                                'assets/btn_map.png',
+                                width: 40,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 40,
                       ),
-                      Button(),
+                      GestureDetector(
+                        onTap: () {
+                          // launch('tel://+6287711354449');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ErrorPage(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 24),
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(17),
+                            color: purpleColor,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Book Now',
+                              style: whiteTestStyle.copyWith(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: 30,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Image.asset(
+                      'assets/btn_back.png',
+                      width: 40,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/btn_wishlist.png',
+                    width: 40,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -199,6 +277,7 @@ class DetailPage extends StatelessWidget {
               ),
               Image.asset(
                 'assets/icon_star.png',
+                color: greyColor,
                 width: 20,
               ),
             ],
@@ -264,34 +343,21 @@ class DetailPage extends StatelessWidget {
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(right: 24),
-              child: Image.asset(
-                'assets/btn_map.png',
-                width: 40,
+              child: GestureDetector(
+                onTap: () async {
+                  String url = 'https://goo.gl/maps/tJRDkrWDGiJgR4H87';
+
+                  await launch(url);
+                },
+                child: Image.asset(
+                  'assets/btn_map.png',
+                  width: 40,
+                ),
               ),
             ),
           ],
         ),
       ],
-    );
-  }
-
-  Widget Button() {
-    return Container(
-      margin: EdgeInsets.only(right: 24),
-      height: 50,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(17),
-        color: purpleColor,
-      ),
-      child: Center(
-        child: Text(
-          'Book Now',
-          style: whiteTestStyle.copyWith(
-            fontSize: 18,
-          ),
-        ),
-      ),
     );
   }
 }
